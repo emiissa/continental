@@ -1,0 +1,79 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myClientLabel" jhiTranslate="continentalApp.client.home.createOrEditLabel">Create or edit a Client</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!client.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="client.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="continentalApp.client.nom" for="field_nom">Nom</label>
+            <input type="text" class="form-control" name="nom" id="field_nom"
+                [(ngModel)]="client.nom" required />
+            <div [hidden]="!(editForm.controls.nom?.dirty && editForm.controls.nom?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.nom?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="continentalApp.client.prenom" for="field_prenom">Prenom</label>
+            <input type="text" class="form-control" name="prenom" id="field_prenom"
+                [(ngModel)]="client.prenom" required />
+            <div [hidden]="!(editForm.controls.prenom?.dirty && editForm.controls.prenom?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prenom?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="continentalApp.client.numeroContrat" for="field_numeroContrat">Numero Contrat</label>
+            <input type="text" class="form-control" name="numeroContrat" id="field_numeroContrat"
+                [(ngModel)]="client.numeroContrat"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="continentalApp.client.dateNaissance" for="field_dateNaissance">Date Naissance</label>
+            <div class="input-group">
+                <input id="field_dateNaissance" type="text" class="form-control" name="dateNaissance" ngbDatepicker  #dateNaissanceDp="ngbDatepicker" [(ngModel)]="client.dateNaissance"
+                />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" (click)="dateNaissanceDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="continentalApp.client.telephone" for="field_telephone">Telephone</label>
+            <input type="number" class="form-control" name="telephone" id="field_telephone"
+                [(ngModel)]="client.telephone"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="continentalApp.client.email" for="field_email">Email</label>
+            <input type="text" class="form-control" name="email" id="field_email"
+                [(ngModel)]="client.email"  />
+        </div>
+
+        <div class="form-group">
+            <label jhiTranslate="continentalApp.client.entreprise" for="field_entreprise">Entreprise</label>
+            <select class="form-control" id="field_entreprise" name="entreprise" [(ngModel)]="client.entrepriseId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="entrepriseOption.id" *ngFor="let entrepriseOption of entreprises; trackBy: trackEntrepriseById">{{entrepriseOption.nom}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

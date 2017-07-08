@@ -1,0 +1,62 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myOperationsLabel" jhiTranslate="continentalApp.operations.home.createOrEditLabel">Create or edit a Operations</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!operations.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="operations.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="continentalApp.operations.dateOperation" for="field_dateOperation">Date Operation</label>
+            <div class="input-group">
+                <input id="field_dateOperation" type="text" class="form-control" name="dateOperation" ngbDatepicker  #dateOperationDp="ngbDatepicker" [(ngModel)]="operations.dateOperation"
+                />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" (click)="dateOperationDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="continentalApp.operations.description" for="field_description">Description</label>
+            <input type="text" class="form-control" name="description" id="field_description"
+                [(ngModel)]="operations.description"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="continentalApp.operations.montant" for="field_montant">Montant</label>
+            <input type="number" class="form-control" name="montant" id="field_montant"
+                [(ngModel)]="operations.montant"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="continentalApp.operations.tiersPayant" for="field_tiersPayant">Tiers Payant</label>
+            <input type="number" class="form-control" name="tiersPayant" id="field_tiersPayant"
+                [(ngModel)]="operations.tiersPayant"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="continentalApp.operations.pourcentage" for="field_pourcentage">Pourcentage</label>
+            <input type="number" class="form-control" name="pourcentage" id="field_pourcentage"
+                [(ngModel)]="operations.pourcentage"  />
+        </div>
+
+        <div class="form-group">
+            <label jhiTranslate="continentalApp.operations.remboursement" for="field_remboursement">Remboursement</label>
+            <select class="form-control" id="field_remboursement" name="remboursement" [(ngModel)]="operations.remboursementId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="remboursementOption.id" *ngFor="let remboursementOption of remboursements; trackBy: trackRemboursementById">{{remboursementOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

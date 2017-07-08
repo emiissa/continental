@@ -1,0 +1,27 @@
+{
+    "continentalApp": {
+        "operations" : {
+            "home": {
+                "title": "Operations",
+                "createLabel": "Créer un nouveau Operations",
+                "createOrEditLabel": "Créer ou éditer un Operations"
+            },
+            "created": "Un nouveau Operations a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Operations avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Operations avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Operations {{ id }} ?"
+            },
+            "detail": {
+                "title": "Operations"
+            },
+            "dateOperation": "Date Operation",
+            "description": "Description",
+            "montant": "Montant",
+            "tiersPayant": "Tiers Payant",
+            "pourcentage": "Pourcentage",
+            "remboursement": "Remboursement",
+            "prestataire": "Prestataire"
+        }
+    }
+}

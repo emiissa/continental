@@ -1,0 +1,110 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myRemboursementLabel" jhiTranslate="continentalApp.remboursement.home.createOrEditLabel">Create or edit a Remboursement</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!remboursement.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="remboursement.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="continentalApp.remboursement.numeroDossier" for="field_numeroDossier">Numero Dossier</label>
+            <input type="number" class="form-control" name="numeroDossier" id="field_numeroDossier"
+                [(ngModel)]="remboursement.numeroDossier"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="continentalApp.remboursement.dateR" for="field_dateR">Date R</label>
+            <div class="input-group">
+                <input id="field_dateR" type="text" class="form-control" name="dateR" ngbDatepicker  #dateRDp="ngbDatepicker" [(ngModel)]="remboursement.dateR"
+                />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" (click)="dateRDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="continentalApp.remboursement.nomMalade" for="field_nomMalade">Nom Malade</label>
+            <input type="text" class="form-control" name="nomMalade" id="field_nomMalade"
+                [(ngModel)]="remboursement.nomMalade"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="continentalApp.remboursement.prenomMalade" for="field_prenomMalade">Prenom Malade</label>
+            <input type="text" class="form-control" name="prenomMalade" id="field_prenomMalade"
+                [(ngModel)]="remboursement.prenomMalade"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="continentalApp.remboursement.dateNaissance" for="field_dateNaissance">Date Naissance</label>
+            <input type="text" class="form-control" name="dateNaissance" id="field_dateNaissance"
+                [(ngModel)]="remboursement.dateNaissance"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="continentalApp.remboursement.lien" for="field_lien">Lien</label>
+            <select class="form-control" name="lien" [(ngModel)]="remboursement.lien" id="field_lien" >
+                <option value="CLIENT" jhiTranslate="continentalApp.LienMalade.CLIENT">CLIENT</option>
+                <option value="CONJOINT" jhiTranslate="continentalApp.LienMalade.CONJOINT">CONJOINT</option>
+                <option value="ENFANT" jhiTranslate="continentalApp.LienMalade.ENFANT">ENFANT</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="continentalApp.remboursement.pieceJointe" for="field_pieceJointe">Piece Jointe</label>
+            <div>
+                <img [src]="'data:' + remboursement.pieceJointeContentType + ';base64,' + remboursement.pieceJointe" style="max-height: 100px;" *ngIf="remboursement.pieceJointe" alt="remboursement image"/>
+                <div *ngIf="remboursement.pieceJointe" class="form-text text-danger clearfix">
+                    <span class="pull-left">{{remboursement.pieceJointeContentType}}, {{byteSize(remboursement.pieceJointe)}}</span>
+                    <button type="button" (click)="clearInputImage('pieceJointe', 'pieceJointeContentType', 'fileImage')" class="btn btn-default btn-xs pull-right">
+                        <span class="fa fa-times"></span>
+                    </button>
+                </div>
+                <input type="file" id="fileImage" (change)="setFileData($event, remboursement, 'pieceJointe', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+            </div>
+            <input type="hidden" class="form-control" name="pieceJointe" id="field_pieceJointe"
+                [(ngModel)]="remboursement.pieceJointe"  />
+            <input type="hidden" class="form-control" name="pieceJointeContentType" id="field_pieceJointeContentType"
+                [(ngModel)]="remboursement.pieceJointeContentType" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="continentalApp.remboursement.pieceJointe2" for="field_pieceJointe2">Piece Jointe 2</label>
+            <div>
+                <div *ngIf="remboursement.pieceJointe2" class="form-text text-danger clearfix">
+                    <a class="pull-left" (click)="openFile(remboursement.pieceJointe2ContentType, remboursement.pieceJointe2)" jhiTranslate="entity.action.open">open</a><br>
+                    <span class="pull-left">{{remboursement.pieceJointe2ContentType}}, {{byteSize(remboursement.pieceJointe2)}}</span>
+                    <button type="button" (click)="remboursement.pieceJointe2=null;remboursement.pieceJointe2ContentType=null;"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="fa fa-times"></span>
+                    </button>
+                </div>
+                <input type="file" (change)="setFileData($event, remboursement, 'pieceJointe2', false)" jhiTranslate="entity.action.addblob"/>
+            </div>
+            <input type="hidden" class="form-control" name="pieceJointe2" id="field_pieceJointe2"
+                [(ngModel)]="remboursement.pieceJointe2"  />
+            <input type="hidden" class="form-control" name="pieceJointe2ContentType" id="field_pieceJointe2ContentType"
+                [(ngModel)]="remboursement.pieceJointe2ContentType" />
+        </div>
+
+        <div class="form-group">
+            <label jhiTranslate="continentalApp.remboursement.client" for="field_client">Client</label>
+            <select class="form-control" id="field_client" name="client" [(ngModel)]="remboursement.clientId"  required>
+                <option [ngValue]="clientOption.id" *ngFor="let clientOption of clients; trackBy: trackClientById">{{clientOption.id}}</option>
+            </select>
+        </div>
+        <div [hidden]="!(editForm.controls.client?.dirty && editForm.controls.client?.invalid)">
+            <small class="form-text text-danger"
+                [hidden]="!editForm.controls.client?.errors?.required" jhiTranslate="entity.validation.required">
+                This field is required.
+            </small>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

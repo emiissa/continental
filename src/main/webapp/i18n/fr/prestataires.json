@@ -1,0 +1,27 @@
+{
+    "continentalApp": {
+        "prestataires" : {
+            "home": {
+                "title": "Prestataires",
+                "createLabel": "Créer un nouveau Prestataires",
+                "createOrEditLabel": "Créer ou éditer un Prestataires"
+            },
+            "created": "Un nouveau Prestataires a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Prestataires avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Prestataires avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Prestataires {{ id }} ?"
+            },
+            "detail": {
+                "title": "Prestataires"
+            },
+            "nom": "Nom",
+            "adresse": "Adresse",
+            "tel": "Tel",
+            "numeroCompte": "Numero Compte",
+            "email": "Email",
+            "type": "Type",
+            "operations": "Operations"
+        }
+    }
+}

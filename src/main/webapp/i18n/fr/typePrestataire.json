@@ -1,0 +1,9 @@
+{
+    "continentalApp": {
+        "TypePrestataire" : {
+            "null": "",
+            "CLINIQUE": "CLINIQUE",
+            "PHARMACIE": "PHARMACIE"
+        }
+    }
+}

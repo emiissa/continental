@@ -1,0 +1,46 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "remboursement",
+            "otherEntityName": "remboursement",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "prestataire",
+            "otherEntityName": "prestataires",
+            "otherEntityRelationshipName": "operations"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "dateOperation",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "montant",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "tiersPayant",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "pourcentage",
+            "fieldType": "Float"
+        }
+    ],
+    "changelogDate": "20170708104838",
+    "javadoc": "Entity Operations",
+    "entityTableName": "operations",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "angularJSSuffix": "mt"
+}

@@ -1,0 +1,30 @@
+{
+    "continentalApp": {
+        "remboursement" : {
+            "home": {
+                "title": "Remboursements",
+                "createLabel": "Créer un nouveau Remboursement",
+                "createOrEditLabel": "Créer ou éditer un Remboursement"
+            },
+            "created": "Un nouveau Remboursement a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Remboursement avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Remboursement avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Remboursement {{ id }} ?"
+            },
+            "detail": {
+                "title": "Remboursement"
+            },
+            "numeroDossier": "Numero Dossier",
+            "dateR": "Date R",
+            "nomMalade": "Nom Malade",
+            "prenomMalade": "Prenom Malade",
+            "dateNaissance": "Date Naissance",
+            "lien": "Lien",
+            "pieceJointe": "Piece Jointe",
+            "pieceJointe2": "Piece Jointe 2",
+            "operations": "Operations",
+            "client": "Client"
+        }
+    }
+}

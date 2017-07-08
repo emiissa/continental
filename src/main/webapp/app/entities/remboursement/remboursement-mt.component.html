@@ -1,0 +1,84 @@
+<div>
+    <h2>
+        <span jhiTranslate="continentalApp.remboursement.home.title">Remboursements</span>
+        <button class="btn btn-primary float-right create-remboursement-mt" [routerLink]="['/', { outlets: { popup: ['remboursement-mt-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="continentalApp.remboursement.home.createLabel">
+            Create new Remboursement
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="remboursements">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="continentalApp.remboursement.numeroDossier">Numero Dossier</span></th>
+            <th><span jhiTranslate="continentalApp.remboursement.dateR">Date R</span></th>
+            <th><span jhiTranslate="continentalApp.remboursement.nomMalade">Nom Malade</span></th>
+            <th><span jhiTranslate="continentalApp.remboursement.prenomMalade">Prenom Malade</span></th>
+            <th><span jhiTranslate="continentalApp.remboursement.dateNaissance">Date Naissance</span></th>
+            <th><span jhiTranslate="continentalApp.remboursement.lien">Lien</span></th>
+            <th><span jhiTranslate="continentalApp.remboursement.pieceJointe">Piece Jointe</span></th>
+            <th><span jhiTranslate="continentalApp.remboursement.pieceJointe2">Piece Jointe 2</span></th>
+            <th><span jhiTranslate="continentalApp.remboursement.client">Client</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let remboursement of remboursements ;trackBy: trackId">
+                <td><a [routerLink]="['../remboursement-mt', remboursement.id ]">{{remboursement.id}}</a></td>
+                <td>{{remboursement.numeroDossier}}</td>
+                <td>{{remboursement.dateR | date:'mediumDate'}}</td>
+                <td>{{remboursement.nomMalade}}</td>
+                <td>{{remboursement.prenomMalade}}</td>
+                <td>{{remboursement.dateNaissance}}</td>
+                <td jhiTranslate="{{'continentalApp.LienMalade.' + remboursement.lien}}">{{remboursement.lien}}</td>
+                <td>
+                    <a *ngIf="remboursement.pieceJointe" (click)="openFile(remboursement.pieceJointeContentType, remboursement.pieceJointe)">
+                        <img [src]="'data:' + remboursement.pieceJointeContentType + ';base64,' + remboursement.pieceJointe" style="max-height: 30px;" alt="remboursement image"/>
+                    </a>
+                    <span *ngIf="remboursement.pieceJointe">{{remboursement.pieceJointeContentType}}, {{byteSize(remboursement.pieceJointe)}}</span>
+                </td>
+                <td>
+                    <a *ngIf="remboursement.pieceJointe2" (click)="openFile(remboursement.pieceJointe2ContentType, remboursement.pieceJointe2)" jhiTranslate="entity.action.open">open</a>
+                    <span *ngIf="remboursement.pieceJointe2">{{remboursement.pieceJointe2ContentType}}, {{byteSize(remboursement.pieceJointe2)}}</span>
+                </td>
+                <td>
+                    <div *ngIf="remboursement.clientId">
+                        <a [routerLink]="['../client-mt', remboursement.clientId  ]" >{{remboursement.clientId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../remboursement-mt', remboursement.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'remboursement-mt/'+ remboursement.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'remboursement-mt/'+ remboursement.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,42 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "clients",
+            "otherEntityName": "client",
+            "otherEntityRelationshipName": "entreprise"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "nom",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "sigle",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "numeroContrat",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "contact",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "email",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170708104835",
+    "entityTableName": "entreprise",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "angularJSSuffix": "mt"
+}

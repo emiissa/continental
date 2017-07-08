@@ -1,0 +1,47 @@
+
+<div *ngIf="operations">
+    <h2><span jhiTranslate="continentalApp.operations.detail.title">Operations</span> {{operations.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="continentalApp.operations.dateOperation">Date Operation</span></dt>
+        <dd>
+            <span>{{operations.dateOperation | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="continentalApp.operations.description">Description</span></dt>
+        <dd>
+            <span>{{operations.description}}</span>
+        </dd>
+        <dt><span jhiTranslate="continentalApp.operations.montant">Montant</span></dt>
+        <dd>
+            <span>{{operations.montant}}</span>
+        </dd>
+        <dt><span jhiTranslate="continentalApp.operations.tiersPayant">Tiers Payant</span></dt>
+        <dd>
+            <span>{{operations.tiersPayant}}</span>
+        </dd>
+        <dt><span jhiTranslate="continentalApp.operations.pourcentage">Pourcentage</span></dt>
+        <dd>
+            <span>{{operations.pourcentage}}</span>
+        </dd>
+        <dt><span jhiTranslate="continentalApp.operations.remboursement">Remboursement</span></dt>
+        <dd>
+            <div *ngIf="operations.remboursementId">
+                <a [routerLink]="['/remboursement-mt', operations.remboursementId]">{{operations.remboursementId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'operations-mt/'+ operations.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

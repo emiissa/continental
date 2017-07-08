@@ -1,0 +1,67 @@
+
+<div *ngIf="remboursement">
+    <h2><span jhiTranslate="continentalApp.remboursement.detail.title">Remboursement</span> {{remboursement.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="continentalApp.remboursement.numeroDossier">Numero Dossier</span></dt>
+        <dd>
+            <span>{{remboursement.numeroDossier}}</span>
+        </dd>
+        <dt><span jhiTranslate="continentalApp.remboursement.dateR">Date R</span></dt>
+        <dd>
+            <span>{{remboursement.dateR | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="continentalApp.remboursement.nomMalade">Nom Malade</span></dt>
+        <dd>
+            <span>{{remboursement.nomMalade}}</span>
+        </dd>
+        <dt><span jhiTranslate="continentalApp.remboursement.prenomMalade">Prenom Malade</span></dt>
+        <dd>
+            <span>{{remboursement.prenomMalade}}</span>
+        </dd>
+        <dt><span jhiTranslate="continentalApp.remboursement.dateNaissance">Date Naissance</span></dt>
+        <dd>
+            <span>{{remboursement.dateNaissance}}</span>
+        </dd>
+        <dt><span jhiTranslate="continentalApp.remboursement.lien">Lien</span></dt>
+        <dd>
+            <span jhiTranslate="{{'continentalApp.LienMalade.' + remboursement.lien}}">{{remboursement.lien}}</span>
+        </dd>
+        <dt><span jhiTranslate="continentalApp.remboursement.pieceJointe">Piece Jointe</span></dt>
+        <dd>
+            <div *ngIf="remboursement.pieceJointe">
+                <a (click)="openFile(remboursement.pieceJointeContentType, remboursement.pieceJointe)">
+                    <img [src]="'data:' + remboursement.pieceJointeContentType + ';base64,' + remboursement.pieceJointe" style="max-width: 100%;" alt="remboursement image"/>
+                </a>
+                {{remboursement.pieceJointeContentType}}, {{byteSize(remboursement.pieceJointe)}}
+            </div>
+        </dd>
+        <dt><span jhiTranslate="continentalApp.remboursement.pieceJointe2">Piece Jointe 2</span></dt>
+        <dd>
+            <div *ngIf="remboursement.pieceJointe2">
+                <a (click)="openFile(remboursement.pieceJointe2ContentType, remboursement.pieceJointe2)" jhiTranslate="entity.action.open">open</a>
+                {{remboursement.pieceJointe2ContentType}}, {{byteSize(remboursement.pieceJointe2)}}
+            </div>
+        </dd>
+        <dt><span jhiTranslate="continentalApp.remboursement.client">Client</span></dt>
+        <dd>
+            <div *ngIf="remboursement.clientId">
+                <a [routerLink]="['/client-mt', remboursement.clientId]">{{remboursement.clientId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'remboursement-mt/'+ remboursement.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

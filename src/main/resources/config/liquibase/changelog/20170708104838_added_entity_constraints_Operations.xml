@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <!--
+        Added the constraints for entity Operations.
+    -->
+    <changeSet id="20170708104838-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="remboursement_id"
+                                 baseTableName="operations"
+                                 constraintName="fk_operations_remboursement_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="remboursement"/>
+
+    </changeSet>
+</databaseChangeLog>

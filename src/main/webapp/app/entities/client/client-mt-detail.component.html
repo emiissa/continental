@@ -1,0 +1,51 @@
+
+<div *ngIf="client">
+    <h2><span jhiTranslate="continentalApp.client.detail.title">Client</span> {{client.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="continentalApp.client.nom">Nom</span></dt>
+        <dd>
+            <span>{{client.nom}}</span>
+        </dd>
+        <dt><span jhiTranslate="continentalApp.client.prenom">Prenom</span></dt>
+        <dd>
+            <span>{{client.prenom}}</span>
+        </dd>
+        <dt><span jhiTranslate="continentalApp.client.numeroContrat">Numero Contrat</span></dt>
+        <dd>
+            <span>{{client.numeroContrat}}</span>
+        </dd>
+        <dt><span jhiTranslate="continentalApp.client.dateNaissance">Date Naissance</span></dt>
+        <dd>
+            <span>{{client.dateNaissance | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="continentalApp.client.telephone">Telephone</span></dt>
+        <dd>
+            <span>{{client.telephone}}</span>
+        </dd>
+        <dt><span jhiTranslate="continentalApp.client.email">Email</span></dt>
+        <dd>
+            <span>{{client.email}}</span>
+        </dd>
+        <dt><span jhiTranslate="continentalApp.client.entreprise">Entreprise</span></dt>
+        <dd>
+            <div *ngIf="client.entrepriseId">
+                <a [routerLink]="['/entreprise-mt', client.entrepriseId]">{{client.entrepriseNom}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'client-mt/'+ client.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,62 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "operations",
+            "otherEntityName": "operations",
+            "otherEntityRelationshipName": "remboursement"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": "required",
+            "relationshipName": "client",
+            "otherEntityName": "client",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "numeroDossier",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "dateR",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "nomMalade",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "prenomMalade",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dateNaissance",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "lien",
+            "fieldType": "LienMalade",
+            "fieldValues": "CLIENT,CONJOINT,ENFANT"
+        },
+        {
+            "fieldName": "pieceJointe",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "pieceJointe2",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "any"
+        }
+    ],
+    "changelogDate": "20170708104837",
+    "javadoc": "Entity Remboursement",
+    "entityTableName": "remboursement",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "angularJSSuffix": "mt"
+}

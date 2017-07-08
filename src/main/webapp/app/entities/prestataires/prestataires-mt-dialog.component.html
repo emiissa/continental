@@ -1,0 +1,76 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myPrestatairesLabel" jhiTranslate="continentalApp.prestataires.home.createOrEditLabel">Create or edit a Prestataires</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!prestataires.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="prestataires.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="continentalApp.prestataires.nom" for="field_nom">Nom</label>
+            <input type="text" class="form-control" name="nom" id="field_nom"
+                [(ngModel)]="prestataires.nom" required />
+            <div [hidden]="!(editForm.controls.nom?.dirty && editForm.controls.nom?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.nom?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="continentalApp.prestataires.adresse" for="field_adresse">Adresse</label>
+            <input type="text" class="form-control" name="adresse" id="field_adresse"
+                [(ngModel)]="prestataires.adresse"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="continentalApp.prestataires.tel" for="field_tel">Tel</label>
+            <input type="number" class="form-control" name="tel" id="field_tel"
+                [(ngModel)]="prestataires.tel"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="continentalApp.prestataires.numeroCompte" for="field_numeroCompte">Numero Compte</label>
+            <input type="number" class="form-control" name="numeroCompte" id="field_numeroCompte"
+                [(ngModel)]="prestataires.numeroCompte"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="continentalApp.prestataires.email" for="field_email">Email</label>
+            <input type="text" class="form-control" name="email" id="field_email"
+                [(ngModel)]="prestataires.email"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="continentalApp.prestataires.type" for="field_type">Type</label>
+            <select class="form-control" name="type" [(ngModel)]="prestataires.type" id="field_type"  required>
+                <option value="CLINIQUE" jhiTranslate="continentalApp.TypePrestataire.CLINIQUE">CLINIQUE</option>
+                <option value="PHARMACIE" jhiTranslate="continentalApp.TypePrestataire.PHARMACIE">PHARMACIE</option>
+            </select>
+            <div [hidden]="!(editForm.controls.type?.dirty && editForm.controls.type?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.type?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label jhiTranslate="continentalApp.prestataires.operations" for="field_operations">Operations</label>
+            <select class="form-control" id="field_operations" name="operations" [(ngModel)]="prestataires.operationsId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="operationsOption.id" *ngFor="let operationsOption of operations; trackBy: trackOperationsById">{{operationsOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

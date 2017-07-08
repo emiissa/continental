@@ -1,0 +1,26 @@
+{
+    "continentalApp": {
+        "entreprise" : {
+            "home": {
+                "title": "Entreprises",
+                "createLabel": "Créer un nouveau Entreprise",
+                "createOrEditLabel": "Créer ou éditer un Entreprise"
+            },
+            "created": "Un nouveau Entreprise a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Entreprise avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Entreprise avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Entreprise {{ id }} ?"
+            },
+            "detail": {
+                "title": "Entreprise"
+            },
+            "nom": "Nom",
+            "sigle": "Sigle",
+            "numeroContrat": "Numero Contrat",
+            "contact": "Contact",
+            "email": "Email",
+            "clients": "Clients"
+        }
+    }
+}

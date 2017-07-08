@@ -1,0 +1,72 @@
+<div>
+    <h2>
+        <span jhiTranslate="continentalApp.prestataires.home.title">Prestataires</span>
+        <button class="btn btn-primary float-right create-prestataires-mt" [routerLink]="['/', { outlets: { popup: ['prestataires-mt-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="continentalApp.prestataires.home.createLabel">
+            Create new Prestataires
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="prestataires">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="continentalApp.prestataires.nom">Nom</span></th>
+            <th><span jhiTranslate="continentalApp.prestataires.adresse">Adresse</span></th>
+            <th><span jhiTranslate="continentalApp.prestataires.tel">Tel</span></th>
+            <th><span jhiTranslate="continentalApp.prestataires.numeroCompte">Numero Compte</span></th>
+            <th><span jhiTranslate="continentalApp.prestataires.email">Email</span></th>
+            <th><span jhiTranslate="continentalApp.prestataires.type">Type</span></th>
+            <th><span jhiTranslate="continentalApp.prestataires.operations">Operations</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let prestataires of prestataires ;trackBy: trackId">
+                <td><a [routerLink]="['../prestataires-mt', prestataires.id ]">{{prestataires.id}}</a></td>
+                <td>{{prestataires.nom}}</td>
+                <td>{{prestataires.adresse}}</td>
+                <td>{{prestataires.tel}}</td>
+                <td>{{prestataires.numeroCompte}}</td>
+                <td>{{prestataires.email}}</td>
+                <td jhiTranslate="{{'continentalApp.TypePrestataire.' + prestataires.type}}">{{prestataires.type}}</td>
+                <td>
+                    <div *ngIf="prestataires.operationsId">
+                        <a [routerLink]="['../operations-mt', prestataires.operationsId  ]" >{{prestataires.operationsId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../prestataires-mt', prestataires.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'prestataires-mt/'+ prestataires.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'prestataires-mt/'+ prestataires.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

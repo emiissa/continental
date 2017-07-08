@@ -1,0 +1,10 @@
+{
+    "continentalApp": {
+        "LienMalade" : {
+            "null": "",
+            "CLIENT": "CLIENT",
+            "CONJOINT": "CONJOINT",
+            "ENFANT": "ENFANT"
+        }
+    }
+}

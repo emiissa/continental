@@ -1,0 +1,41 @@
+
+<div *ngIf="entreprise">
+    <h2><span jhiTranslate="continentalApp.entreprise.detail.title">Entreprise</span> {{entreprise.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="continentalApp.entreprise.nom">Nom</span></dt>
+        <dd>
+            <span>{{entreprise.nom}}</span>
+        </dd>
+        <dt><span jhiTranslate="continentalApp.entreprise.sigle">Sigle</span></dt>
+        <dd>
+            <span>{{entreprise.sigle}}</span>
+        </dd>
+        <dt><span jhiTranslate="continentalApp.entreprise.numeroContrat">Numero Contrat</span></dt>
+        <dd>
+            <span>{{entreprise.numeroContrat}}</span>
+        </dd>
+        <dt><span jhiTranslate="continentalApp.entreprise.contact">Contact</span></dt>
+        <dd>
+            <span>{{entreprise.contact}}</span>
+        </dd>
+        <dt><span jhiTranslate="continentalApp.entreprise.email">Email</span></dt>
+        <dd>
+            <span>{{entreprise.email}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'entreprise-mt/'+ entreprise.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>
